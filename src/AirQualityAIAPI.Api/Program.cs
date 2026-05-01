@@ -1,20 +1,8 @@
-using AirQualityAIAPI.Infrastructure.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new()
-    {
-        Title = "AirQualityAIAPI",
-        Version = "v1",
-        Description = "REST API for managing air quality readings, following Clean Architecture."
-    });
-});
-
-builder.Services.AddInfrastructure();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
