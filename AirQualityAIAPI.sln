@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36518.9 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityAIAPI", "AirQualityAIAPI.csproj", "{D46D7253-1504-48A8-89A5-97F06E530216}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityAIAPI.Domain", "src\AirQualityAIAPI.Domain\AirQualityAIAPI.Domain.csproj", "{59C3042F-DAE1-4C4B-B07C-B0DE45CA67A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityAIAPI.Application", "src\AirQualityAIAPI.Application\AirQualityAIAPI.Application.csproj", "{B6C2FF87-3700-4FC3-B0F0-FCF361667C92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityAIAPI.Infrastructure", "src\AirQualityAIAPI.Infrastructure\AirQualityAIAPI.Infrastructure.csproj", "{DE49F5AC-D361-49F6-9585-F379A363BF55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityAIAPI.Api", "src\AirQualityAIAPI.Api\AirQualityAIAPI.Api.csproj", "{60351A3E-02FF-4E6B-8693-6D072F0291F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D46D7253-1504-48A8-89A5-97F06E530216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D46D7253-1504-48A8-89A5-97F06E530216}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D46D7253-1504-48A8-89A5-97F06E530216}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D46D7253-1504-48A8-89A5-97F06E530216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C3042F-DAE1-4C4B-B07C-B0DE45CA67A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C3042F-DAE1-4C4B-B07C-B0DE45CA67A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C3042F-DAE1-4C4B-B07C-B0DE45CA67A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C3042F-DAE1-4C4B-B07C-B0DE45CA67A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C2FF87-3700-4FC3-B0F0-FCF361667C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C2FF87-3700-4FC3-B0F0-FCF361667C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C2FF87-3700-4FC3-B0F0-FCF361667C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C2FF87-3700-4FC3-B0F0-FCF361667C92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE49F5AC-D361-49F6-9585-F379A363BF55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE49F5AC-D361-49F6-9585-F379A363BF55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE49F5AC-D361-49F6-9585-F379A363BF55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE49F5AC-D361-49F6-9585-F379A363BF55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60351A3E-02FF-4E6B-8693-6D072F0291F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60351A3E-02FF-4E6B-8693-6D072F0291F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60351A3E-02FF-4E6B-8693-6D072F0291F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60351A3E-02FF-4E6B-8693-6D072F0291F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
