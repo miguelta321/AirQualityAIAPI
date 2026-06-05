@@ -41,8 +41,8 @@ public class PromptBuilderTests
         prompt.Should().Contain("DATOS ACTUALES");
         prompt.Should().Contain("PM2.5: 20");
         prompt.Should().Contain("PM10: 45");
-        prompt.Should().Contain("CO: 0.4");
-        prompt.Should().Contain("O3: 0.03");
+        prompt.Should().Contain("CO: 0,4");
+        prompt.Should().Contain("O3: 0,03");
         prompt.Should().Contain("Temperatura: 19");
         prompt.Should().Contain("HISTORIAL");
         prompt.Should().Contain("Usuario: ¿Cómo estuvo ayer?");
