@@ -9,6 +9,12 @@ public class ChatRepository : IChatRepository
 {
     private readonly IMongoCollection<ChatMessage> _collection;
 
+    public ChatRepository(
+        IMongoCollection<ChatMessage> collection)
+    {
+        _collection = collection;
+    }
+
     public ChatRepository(MongoDBContext context)
     {
         _collection =
