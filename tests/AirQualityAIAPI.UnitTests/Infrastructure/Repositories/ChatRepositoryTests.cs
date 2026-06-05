@@ -18,30 +18,38 @@ public class ChatRepositoryTests
             new() { SessionId = "s-1", UserMessage = "u2", AssistantResponse = "a2", CreatedAt = new DateTime(2025, 1, 1, 10, 2, 0, DateTimeKind.Utc) }
         };
 
-        var findFluentMock = new Mock<IFindFluent<ChatMessage, ChatMessage>>();
-        findFluentMock
-            .Setup(x => x.Sort(It.IsAny<SortDefinition<ChatMessage>>()))
-            .Returns(findFluentMock.Object);
-        findFluentMock
-            .Setup(x => x.Limit(It.IsAny<int?>()))
-            .Returns(findFluentMock.Object);
-        findFluentMock
-            .Setup(x => x.ToListAsync(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(itemsFromMongo);
+        var cursorMock = new Mock<IAsyncCursor<ChatMessage>>();
+        cursorMock
+            .SetupSequence(x => x.MoveNext(It.IsAny<CancellationToken>()))
+            .Returns(true)
+            .Returns(false);
+        cursorMock
+            .SetupSequence(x => x.MoveNextAsync(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(true)
+            .ReturnsAsync(false);
+        cursorMock
+            .SetupGet(x => x.Current)
+            .Returns(itemsFromMongo);
 
         var collectionMock = new Mock<IMongoCollection<ChatMessage>>();
         collectionMock
-            .Setup(x => x.Find(
+            .Setup(x => x.FindAsync(
                 It.IsAny<FilterDefinition<ChatMessage>>(),
-                It.IsAny<FindOptions<ChatMessage, ChatMessage>>()))
-            .Returns(findFluentMock.Object);
+                It.Is<FindOptions<ChatMessage, ChatMessage>>(o => o.Limit == 10),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(cursorMock.Object);
 
         var sut = new ChatRepository(collectionMock.Object);
 
         var result = await sut.GetHistoryAsync("s-1");
 
         result.Select(x => x.UserMessage).Should().ContainInOrder("u1", "u2", "u3");
-        findFluentMock.Verify(x => x.Limit(10), Times.Once);
+        collectionMock.Verify(
+            x => x.FindAsync(
+                It.IsAny<FilterDefinition<ChatMessage>>(),
+                It.Is<FindOptions<ChatMessage, ChatMessage>>(o => o.Limit == 10),
+                It.IsAny<CancellationToken>()),
+            Times.Once);
     }
 
     [Fact]

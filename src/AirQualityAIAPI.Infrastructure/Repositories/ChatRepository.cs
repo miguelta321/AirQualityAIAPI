@@ -25,10 +25,21 @@ public class ChatRepository : IChatRepository
     public async Task<List<ChatMessage>> GetHistoryAsync(
         string sessionId)
     {
-        var history = await _collection
-            .Find(x => x.SessionId == sessionId)
-            .SortByDescending(x => x.CreatedAt)
-            .Limit(10)
+        var filter = Builders<ChatMessage>
+            .Filter
+            .Eq(x => x.SessionId, sessionId);
+
+        var cursor = await _collection.FindAsync(
+            filter,
+            new FindOptions<ChatMessage>
+            {
+                Sort = Builders<ChatMessage>
+                    .Sort
+                    .Descending(x => x.CreatedAt),
+                Limit = 10
+            });
+
+        var history = await cursor
             .ToListAsync();
 
         return history
