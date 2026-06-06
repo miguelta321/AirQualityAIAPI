@@ -6,9 +6,7 @@ namespace AirQualityIAAPI.Application.Services;
 
 public static class PromptBuilder
 {
-    public static string Build(
-        ChatRequestDto request,
-        List<ChatMessage> history)
+    public static string Build(ChatRequestDto request, List<ChatMessage> history)
     {
         var sb = new StringBuilder();
 

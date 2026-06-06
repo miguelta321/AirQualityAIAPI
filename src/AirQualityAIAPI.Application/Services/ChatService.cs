@@ -18,15 +18,13 @@ public class ChatService : IChatService
         _aiService = aiService;
     }
 
-    public async Task<ChatResponseDto> ProcessMessageAsync(
-        ChatRequestDto request)
+    public async Task<ChatResponseDto> ProcessMessageAsync(ChatRequestDto request)
     {
         var history = await _chatRepository.GetHistoryAsync(request.SessionId);
 
-        var prompt =
-            PromptBuilder.Build(request, history);
+        var prompt = PromptBuilder.Build(request, history);
 
-        var aiResponse =await _aiService.GenerateResponseAsync(prompt);
+        var aiResponse = await _aiService.GenerateResponseAsync(prompt);
 
         await _chatRepository.SaveAsync(
             new ChatMessage
